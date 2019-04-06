@@ -1,0 +1,3 @@
+[submodule "Fabula"]
+	path = Fabula
+	url = https://github.com/YehorDzhurynskyi/Fabula.git
