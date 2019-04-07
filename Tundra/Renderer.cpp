@@ -7,6 +7,9 @@
 #include <SDL_image.h>
 #include <Fabula/Graphics/API/opengl.h>
 
+namespace fbl
+{
+
 Renderer::Renderer()
     : m_currentSpriteCount(0)
 {
@@ -176,4 +179,6 @@ void Renderer::present_Before()
 void Renderer::present_After()
 {
     m_currentSpriteCount = 0;
+}
+
 }

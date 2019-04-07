@@ -11,6 +11,7 @@
 #include <SDL_image.h>
 
 #include <Fabula/Graphics/API/opengl.h>
+#include <Fabula/Graphics/Text/TextRenderer.h>
 
 #include <Fabula/Layer/LayerStack.h>
 #include <Fabula/Layer/Event/EventBus.h>
@@ -185,16 +186,16 @@ void TundraApplication::Init()
     g_Game = &layers.push<GameLayer>();
     layers.push<HUDLayer>();
 
-    m_IsRunning = Renderer::get().init();
-    //m_IsRunning = m_IsRunning && TextRenderer::get().init();
+    m_IsRunning = fbl::Renderer::get().init();
+    m_IsRunning = m_IsRunning && fbl::TextRenderer::get().init();
 
     assert(m_IsRunning);
 }
 
 void TundraApplication::Shutdown()
 {
-    Renderer::get().shutdown();
-    //TextRenderer::get().shutdown();
+    fbl::Renderer::get().shutdown();
+    fbl::TextRenderer::get().shutdown();
 
     SDL_GL_DeleteContext(m_SDL_GLContext);
     SDL_DestroyWindow(m_SDLWindow);

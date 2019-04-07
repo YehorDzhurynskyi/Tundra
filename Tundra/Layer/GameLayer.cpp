@@ -49,7 +49,7 @@ void GameLayer::update()
 
 void GameLayer::render() const
 {
-    FBL_GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, Renderer::get().m_FBO));
+    FBL_GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, fbl::Renderer::get().m_FBO));
     FBL_GL_CALL(glClear(GL_COLOR_BUFFER_BIT));
 
     m_player.render();
@@ -64,42 +64,42 @@ void GameLayer::render() const
     }
 
     {
-        Renderer::get().present_Before();
+        fbl::Renderer::get().present_Before();
 
         {
-            FBL_GL_CALL(glBindTexture(GL_TEXTURE_2D, Renderer::get().m_atlas_Texture));
-            Renderer::get().m_staticPass.bind();
+            FBL_GL_CALL(glBindTexture(GL_TEXTURE_2D, fbl::Renderer::get().m_atlas_Texture));
+            fbl::Renderer::get().m_staticPass.bind();
 
-            FBL_GL_CALL(glDrawElements(GL_TRIANGLES, Renderer::get().m_currentSpriteCount * 6, GL_UNSIGNED_SHORT, (void*)0));
+            FBL_GL_CALL(glDrawElements(GL_TRIANGLES, fbl::Renderer::get().m_currentSpriteCount * 6, GL_UNSIGNED_SHORT, (void*)0));
 
-            Renderer::get().m_staticPass.unbind();
+            fbl::Renderer::get().m_staticPass.unbind();
         }
 
         FBL_GL_CALL(glBindFramebuffer(GL_FRAMEBUFFER, 0));
         FBL_GL_CALL(glClear(GL_COLOR_BUFFER_BIT));
 
         {
-            FBL_GL_CALL(glBindTexture(GL_TEXTURE_2D, Renderer::get().m_target_Texture));
-            Renderer::get().m_motionBlurPass.bind();
+            FBL_GL_CALL(glBindTexture(GL_TEXTURE_2D, fbl::Renderer::get().m_target_Texture));
+            fbl::Renderer::get().m_motionBlurPass.bind();
 
-            FBL_GL_CALL(glDrawElements(GL_TRIANGLES, Renderer::get().m_currentSpriteCount * 6, GL_UNSIGNED_SHORT, (void*)0));
+            FBL_GL_CALL(glDrawElements(GL_TRIANGLES, fbl::Renderer::get().m_currentSpriteCount * 6, GL_UNSIGNED_SHORT, (void*)0));
 
-            Renderer::get().m_motionBlurPass.unbind();
+            fbl::Renderer::get().m_motionBlurPass.unbind();
         }
 
-        Renderer::get().present_After();
+        fbl::Renderer::get().present_After();
     }
 
     m_player.render_Trail();
     {
-        Renderer::get().present_Before();
+        fbl::Renderer::get().present_Before();
 
-        FBL_GL_CALL(glBindTexture(GL_TEXTURE_2D, Renderer::get().m_atlas_Texture));
-        Renderer::get().m_staticPass.bind();
-        FBL_GL_CALL(glDrawArrays(GL_TRIANGLE_STRIP, 0, Renderer::get().m_currentSpriteCount));
-        Renderer::get().m_staticPass.unbind();
+        FBL_GL_CALL(glBindTexture(GL_TEXTURE_2D, fbl::Renderer::get().m_atlas_Texture));
+        fbl::Renderer::get().m_staticPass.bind();
+        FBL_GL_CALL(glDrawArrays(GL_TRIANGLE_STRIP, 0, fbl::Renderer::get().m_currentSpriteCount));
+        fbl::Renderer::get().m_staticPass.unbind();
 
-        Renderer::get().present_After();
+        fbl::Renderer::get().present_After();
     }
 
 #ifdef _DEBUG
@@ -109,7 +109,7 @@ void GameLayer::render() const
         {
             continue;
         }
-        Renderer::get().render(node.Value.SpriteURI,
+        fbl::Renderer::get().render(node.Value.SpriteURI,
                                Camera::get().toNDCSpace(node.Value.Transform),
                                node.Value.ColorTint);
     }
@@ -123,7 +123,7 @@ void GameLayer::render() const
         }
 
         const Particle& particle = node.Value;
-        Renderer::get().render(SpriteURI::Circle,
+        fbl::Renderer::get().render(SpriteURI::Circle,
                                Camera::get().toNDCSpace(particle.Transform),
                                particle.ColorTint);
     }
@@ -136,7 +136,7 @@ void GameLayer::render() const
         }
 
         const Particle& particle = node.Value;
-        Renderer::get().render(SpriteURI::Circle,
+        fbl::Renderer::get().render(SpriteURI::Circle,
                                Camera::get().toNDCSpace(particle.Transform),
                                particle.ColorTint);
     }
@@ -153,14 +153,14 @@ void GameLayer::render() const
     }
 
     {
-        Renderer::get().present_Before();
+        fbl::Renderer::get().present_Before();
 
-        FBL_GL_CALL(glBindTexture(GL_TEXTURE_2D, Renderer::get().m_atlas_Texture));
-        Renderer::get().m_staticPass.bind();
-        FBL_GL_CALL(glDrawElements(GL_TRIANGLES, Renderer::get().m_currentSpriteCount * 6, GL_UNSIGNED_SHORT, (void*)0));
-        Renderer::get().m_staticPass.unbind();
+        FBL_GL_CALL(glBindTexture(GL_TEXTURE_2D, fbl::Renderer::get().m_atlas_Texture));
+        fbl::Renderer::get().m_staticPass.bind();
+        FBL_GL_CALL(glDrawElements(GL_TRIANGLES, fbl::Renderer::get().m_currentSpriteCount * 6, GL_UNSIGNED_SHORT, (void*)0));
+        fbl::Renderer::get().m_staticPass.unbind();
 
-        Renderer::get().present_After();
+        fbl::Renderer::get().present_After();
     }
 }
 
@@ -231,7 +231,7 @@ void Obstacle::render() const
     ::Transform transform(Transform);
 
     transform.Size *= m_scale;
-    Renderer::get().render(SpriteURI, Camera::get().toNDCSpace(transform), ColorTint);
+    fbl::Renderer::get().render(SpriteURI, Camera::get().toNDCSpace(transform), ColorTint);
 }
 
 bool Obstacle::isAlive() const

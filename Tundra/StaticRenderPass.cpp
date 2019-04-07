@@ -70,14 +70,14 @@ void StaticRenderPass::shutdown()
 void StaticRenderPass::bind()
 {
     {
-        Renderer::get().Position_VBO.bind();
+        fbl::Renderer::get().Position_VBO.bind();
         FBL_GL_CALL(glVertexAttribPointer(m_positionLocation, 2, GL_FLOAT, GL_FALSE, sizeof(vec2f), (void*)0));
     }
 
     {
-        Renderer::get().Color_UV_VBO.bind();
-        FBL_GL_CALL(glVertexAttribPointer(m_colorTintLocation, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(Renderer::Color_UV_Data), (void*)offsetof(Renderer::Color_UV_Data, ColorTint)));
-        FBL_GL_CALL(glVertexAttribPointer(m_uvLocation, 2, GL_FLOAT, GL_FALSE, sizeof(Renderer::Color_UV_Data), (void*)offsetof(Renderer::Color_UV_Data, UV)));
+        fbl::Renderer::get().Color_UV_VBO.bind();
+        FBL_GL_CALL(glVertexAttribPointer(m_colorTintLocation, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(fbl::Renderer::Color_UV_Data), (void*)offsetof(fbl::Renderer::Color_UV_Data, ColorTint)));
+        FBL_GL_CALL(glVertexAttribPointer(m_uvLocation, 2, GL_FLOAT, GL_FALSE, sizeof(fbl::Renderer::Color_UV_Data), (void*)offsetof(fbl::Renderer::Color_UV_Data, UV)));
     }
 
     m_program.use();

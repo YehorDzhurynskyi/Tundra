@@ -37,18 +37,18 @@ void HUDLayer::render() const
         t.Position = vec2f(0.9f, 0.9f);
         t.Size = vec2f(0.05f, 0.05f);
 
-        Renderer::get().render(SpriteURI::IconPause, t, FBL_COLOR_WHITE);
+        fbl::Renderer::get().render(SpriteURI::IconPause, t, FBL_COLOR_WHITE);
     }
 
     {
-        Renderer::get().present_Before();
+        fbl::Renderer::get().present_Before();
 
-        FBL_GL_CALL(glBindTexture(GL_TEXTURE_2D, Renderer::get().m_atlas_Texture));
-        Renderer::get().m_staticPass.bind();
-        FBL_GL_CALL(glDrawElements(GL_TRIANGLES, Renderer::get().m_currentSpriteCount * 6, GL_UNSIGNED_SHORT, (void*)0));
-        Renderer::get().m_staticPass.unbind();
+        FBL_GL_CALL(glBindTexture(GL_TEXTURE_2D, fbl::Renderer::get().m_atlas_Texture));
+        fbl::Renderer::get().m_staticPass.bind();
+        FBL_GL_CALL(glDrawElements(GL_TRIANGLES, fbl::Renderer::get().m_currentSpriteCount * 6, GL_UNSIGNED_SHORT, (void*)0));
+        fbl::Renderer::get().m_staticPass.unbind();
 
-        Renderer::get().present_After();
+        fbl::Renderer::get().present_After();
     }
 
 #if 0

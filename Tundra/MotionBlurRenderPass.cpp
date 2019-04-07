@@ -81,7 +81,7 @@ void MotionBlurRenderPass::shutdown()
 void MotionBlurRenderPass::bind()
 {
     {
-        Renderer::get().Position_VBO.bind();
+        fbl::Renderer::get().Position_VBO.bind();
         FBL_GL_CALL(glVertexAttribPointer(m_positionLocation, 2, GL_FLOAT, GL_FALSE, sizeof(vec2f), (void*)0));
     }
 

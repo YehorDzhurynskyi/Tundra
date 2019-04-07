@@ -172,7 +172,7 @@ void Player::update_Brake()
 
 void Player::render() const
 {
-    Renderer::get().render(AnimatedSpriteURI::Player,
+    fbl::Renderer::get().render(AnimatedSpriteURI::Player,
                            m_currentFrame,
                            Camera::get().toNDCSpace(Transform),
                            FBL_COLOR_WHITE);
@@ -192,9 +192,9 @@ void Player::render_Trail() const
     u32 colorTint = FBL_COLOR(0xcc, 0xcc, 0xcc, 0xff);
     float scale = 0.06f;
 
-    Renderer::get().Position_VBO.push(Camera::get().toNDCSpace(vec2f(Transform.Position.x, Transform.Position.y + 0.5f)));
+    fbl::Renderer::get().Position_VBO.push(Camera::get().toNDCSpace(vec2f(Transform.Position.x, Transform.Position.y + 0.5f)));
 
-    Renderer::Color_UV_Data& color_uv = Renderer::get().Color_UV_VBO.push();
+    fbl::Renderer::Color_UV_Data& color_uv = fbl::Renderer::get().Color_UV_VBO.push();
     color_uv.UV = uvSize * vec2f(1.0f * flip, 1.0f) + uvOffset;
     color_uv.ColorTint = colorTint;
 
@@ -204,7 +204,7 @@ void Player::render_Trail() const
     colorTint |= (alpha << 24);
     scale *= 1.15f;
 
-    Renderer::get().m_currentSpriteCount += 1;
+    fbl::Renderer::get().m_currentSpriteCount += 1;
 
     vec2f lastPosition = *m_playerTrailBuffer.rbegin();
     for (auto positionIt = std::next(m_playerTrailBuffer.rbegin());
@@ -216,17 +216,17 @@ void Player::render_Trail() const
         const vec2f trailSegment = position - lastPosition;
         const vec2f trailSegmentSideDir(glm::normalize(vec2f(trailSegment.y, -trailSegment.x)));
 
-        Renderer::get().Position_VBO.push(Camera::get().toNDCSpace(trailSegmentSideDir * scale + lastPosition));
-        Renderer::get().Position_VBO.push(Camera::get().toNDCSpace(-trailSegmentSideDir * scale + lastPosition));
+        fbl::Renderer::get().Position_VBO.push(Camera::get().toNDCSpace(trailSegmentSideDir * scale + lastPosition));
+        fbl::Renderer::get().Position_VBO.push(Camera::get().toNDCSpace(-trailSegmentSideDir * scale + lastPosition));
 
         {
-            Renderer::Color_UV_Data& color_uv = Renderer::get().Color_UV_VBO.push();
+            fbl::Renderer::Color_UV_Data& color_uv = fbl::Renderer::get().Color_UV_VBO.push();
             color_uv.UV = uvSize * vec2f(1.0f * flip, 0.0f) + uvOffset;
             color_uv.ColorTint = colorTint;
         }
 
         {
-            Renderer::Color_UV_Data& color_uv = Renderer::get().Color_UV_VBO.push();
+            fbl::Renderer::Color_UV_Data& color_uv = fbl::Renderer::get().Color_UV_VBO.push();
             color_uv.UV = uvSize * vec2f(1.0f * flip, 1.0f) + uvOffset;
             color_uv.ColorTint = colorTint;
         }
@@ -239,6 +239,6 @@ void Player::render_Trail() const
         colorTint |= (alpha << 24);
         scale *= 1.15f;
 
-        Renderer::get().m_currentSpriteCount += 2;
+        fbl::Renderer::get().m_currentSpriteCount += 2;
     }
 }

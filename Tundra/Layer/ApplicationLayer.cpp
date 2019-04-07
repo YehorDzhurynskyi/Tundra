@@ -6,7 +6,7 @@
 
 ApplicationLayer::ApplicationLayer()
 {
-    Renderer& renderer = Renderer::get();
+    fbl::Renderer& renderer = fbl::Renderer::get();
     Camera& camera = Camera::get();
 
     renderer.connect(*this);

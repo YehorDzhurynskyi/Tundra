@@ -13,9 +13,12 @@
 
 #include <Fabula/Library/Singleton.h>
 
+namespace fbl
+{
+
 class Renderer final : public fbl::LayerNode, public fbl::Singleton<Renderer>
 {
-friend class Singleton<Renderer>;
+    friend class Singleton<Renderer>;
 
 private:
     static const size_t g_MaxVerticesCount = 512;
@@ -64,3 +67,5 @@ public: // TODO: fix to private
 
     fbl::EventListener m_windowResizedListener;
 };
+
+}
