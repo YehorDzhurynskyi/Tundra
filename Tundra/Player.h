@@ -21,7 +21,7 @@ struct Particle
 
 static_assert(sizeof(Particle) == 32, "unexpected size");
 
-class Player final : public LayerNode
+class Player final : public fbl::LayerNode
 {
 public:
     Player();
@@ -31,15 +31,15 @@ public:
     void render_Trail() const;
 
 protected:
-    void onConnect(Layer& layer) override;
+    void onConnect(fbl::Layer& layer) override;
 
     void update_Trail();
     void update_Brake();
 
 public:
     Transform Transform;
-    Pool<Particle, 50> TrailParticles;
-    Pool<Particle, 50> BrakeParticles;
+    fbl::Pool<Particle, 50> TrailParticles;
+    fbl::Pool<Particle, 50> BrakeParticles;
     float DistanceCovered = 0.0f;
 
 private:
@@ -49,6 +49,6 @@ private:
     vec2f m_ownVelocity = vec2f(3.0f, 3.0f);
     vec2f m_inertia;
     i32 m_currentFrame;
-    EventListener m_directionSwitchListener;
-    RotatingBuffer<vec2f, 16> m_playerTrailBuffer;
+    fbl::EventListener m_directionSwitchListener;
+    fbl::RotatingBuffer<vec2f, 16> m_playerTrailBuffer;
 };

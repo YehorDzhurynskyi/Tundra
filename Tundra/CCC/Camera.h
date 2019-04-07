@@ -5,9 +5,9 @@
 
 #include "Fabula/Library/Singleton.h"
 
-class Camera final : public LayerNode, public Singleton<Camera>
+class Camera final : public fbl::LayerNode, public fbl::Singleton<Camera> // TODO: shouldn't be singleton
 {
-friend class Singleton<Camera>;
+friend class fbl::Singleton<Camera>;
 private:
     Camera();
 
@@ -25,7 +25,7 @@ public:
     vec2f screenSpace_To_NDCSpace(const vec2f& screenSpace) const;
 
 protected:
-    void onConnect(Layer& layer) override;
+    void onConnect(fbl::Layer& layer) override;
     void onWindowSizeChanged(i32 width, i32 height);
 
 public:
@@ -33,7 +33,7 @@ public:
     float Zoom = 1.0f;
 
 private:
-    EventListener m_windowResizedListener;
+    fbl::EventListener m_windowResizedListener;
 
     vec2f m_screenSize;
     vec2f m_visibleBounds;

@@ -3,7 +3,7 @@
 #include <Fabula/Layer/Layer.h>
 #include <Fabula/Layer/LayerNode.h>
 
-class HUDLayer : public Layer, public LayerNode
+class HUDLayer : public fbl::Layer, public fbl::LayerNode
 {
 public:
     HUDLayer();
@@ -15,5 +15,5 @@ protected:
     void onConnect(Layer& layer) override;
 
 protected:
-    EventListener m_clickEventListener;
+    fbl::EventListener m_clickEventListener;
 };

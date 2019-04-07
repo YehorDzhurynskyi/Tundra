@@ -27,7 +27,7 @@ private:
     float m_scale = 0.0f;
 };
 
-class GameLayer final : public Layer
+class GameLayer final : public fbl::Layer
 {
     friend class HUDLayer;
 
@@ -91,10 +91,10 @@ protected:
 protected:
     Player m_player;
     SpriteAtlas m_atlas;
-    Pool<Obstacle, 100> m_obstacles;
+    fbl::Pool<Obstacle, 100> m_obstacles;
 
 #ifdef _DEBUG
-    Pool<Obstacle, 10> m_Debug;
+    fbl::Pool<Obstacle, 10> m_Debug;
 #endif
 };
 

@@ -16,7 +16,7 @@ Camera::Camera()
     SDL_GetWindowSize(fbl::g_Application->GetSDLWindow(), &w, &h);
     onWindowSizeChanged(w, h);
 
-    m_windowResizedListener.on(WindowResizedEvent::TypeID(), [this](const IEvent& event)
+    m_windowResizedListener.on(WindowResizedEvent::TypeID(), [this](const fbl::IEvent& event)
     {
         assert(event.GetEventTypeID() == WindowResizedEvent::TypeID());
         const WindowResizedEvent& windowResizedEvent = AS(const WindowResizedEvent&, event);
@@ -26,7 +26,7 @@ Camera::Camera()
     });
 }
 
-void Camera::onConnect(Layer& layer)
+void Camera::onConnect(fbl::Layer& layer)
 {
     m_windowResizedListener.bind(layer);
 }

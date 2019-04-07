@@ -2,7 +2,7 @@
 
 #include <Fabula/Layer/Layer.h>
 
-class ApplicationLayer final : public Layer
+class ApplicationLayer final : public fbl::Layer
 {
 public:
     ApplicationLayer();

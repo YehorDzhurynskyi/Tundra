@@ -3,7 +3,7 @@
 #include <Fabula/types.h>
 #include <Fabula/Layer/Event/Event.h>
 
-struct ClickEvent : public IEvent
+struct ClickEvent : public fbl::IEvent
 {
     EmitEventRTTI(ClickEvent)
 
@@ -12,7 +12,7 @@ public:
     float NDCYPos;
 };
 
-struct WindowFocusEvent : public IEvent
+struct WindowFocusEvent : public fbl::IEvent
 {
     EmitEventRTTI(WindowFocusEvent)
 
@@ -20,7 +20,7 @@ public:
     bool Focused;
 };
 
-struct WindowResizedEvent : public IEvent
+struct WindowResizedEvent : public fbl::IEvent
 {
     EmitEventRTTI(WindowResizedEvent)
 
