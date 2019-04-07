@@ -5,7 +5,7 @@
 
 #include "CCC/Camera.h"
 
-#include <Fabula/Graphics/Renderer.h>
+#include "Renderer.h"
 
 const float GameLayer::g_MapWidth = 15.0f;
 const float GameLayer::g_ChunkGenerationOffset = 0.5f * Camera::g_MinimumVisibleWorldHeight; // TODO: fix

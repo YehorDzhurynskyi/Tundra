@@ -4,12 +4,12 @@
 #include "GameLayer.h"
 #include "Event/Event.h"
 
-#include <Fabula/Graphics/Renderer.h>
+#include "Renderer.h"
 #include <Fabula/Graphics/Text/TextRenderer.h>
 
 HUDLayer::HUDLayer()
 {
-    m_clickEventListener.on(ClickEvent::TypeID(), [](const IEvent& event)
+    m_clickEventListener.on(ClickEvent::TypeID(), [](const fbl::IEvent& event)
     {
         assert(event.GetEventTypeID() == ClickEvent::TypeID());
 
@@ -84,8 +84,8 @@ void HUDLayer::render() const
     }
 #endif
 #endif
-    TextRenderer::get().render_Text("Hello", vec2f(0.0f, 0.0f));
-    TextRenderer::get().present();
+    fbl::TextRenderer::get().render_Text("Hello", vec2f(0.0f, 0.0f));
+    fbl::TextRenderer::get().present();
 }
 
 void HUDLayer::onConnect(Layer& layer)

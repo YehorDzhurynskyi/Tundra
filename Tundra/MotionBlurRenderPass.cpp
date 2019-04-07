@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "MotionBlurRenderPass.h"
 
-#include <Fabula/Graphics/Renderer.h>
-#include <Fabula/Layer/GameLayer.h>
+#include "Renderer.h"
+#include "Layer/GameLayer.h"
 
 namespace
 {

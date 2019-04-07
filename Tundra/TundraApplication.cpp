@@ -1,17 +1,18 @@
 #include "pch.h"
 #include "TundraApplication.h"
 
+#include "Layer/GameLayer.h"
+#include "Layer/ApplicationLayer.h"
+#include "Layer/HUDLayer.h"
+#include "Layer/Event/Event.h"
+#include "Renderer.h"
+
 #include <SDL.h>
 #include <SDL_image.h>
 
-#include <Fabula/Graphics/Renderer.h>
 #include <Fabula/Graphics/API/opengl.h>
-#include <Fabula/Graphics/Text/TextRenderer.h>
 
-#include <Fabula/Layer/GameLayer.h>
 #include <Fabula/Layer/LayerStack.h>
-#include <Fabula/Layer/ApplicationLayer.h>
-#include <Fabula/Layer/HUDLayer.h>
 #include <Fabula/Layer/Event/EventBus.h>
 
 #include <Fabula/Library/Singleton.h>
@@ -27,7 +28,7 @@ namespace
 
 void poll_events()
 {
-    EventBus& eventBus = EventBus::get();
+    fbl::EventBus& eventBus = fbl::EventBus::get();
 
     SDL_Event eventBuffer[4];
     SDL_PumpEvents();
@@ -179,13 +180,13 @@ void TundraApplication::Init()
     SDL_LogSetAllPriority(SDL_LOG_PRIORITY_WARN);
 #endif
 
-    LayerStack& layers = LayerStack::get();
+    fbl::LayerStack& layers = fbl::LayerStack::get();
     layers.push<ApplicationLayer>();
     g_Game = &layers.push<GameLayer>();
     layers.push<HUDLayer>();
 
     m_IsRunning = Renderer::get().init();
-    m_IsRunning = m_IsRunning && TextRenderer::get().init();
+    //m_IsRunning = m_IsRunning && TextRenderer::get().init();
 
     assert(m_IsRunning);
 }
@@ -193,7 +194,7 @@ void TundraApplication::Init()
 void TundraApplication::Shutdown()
 {
     Renderer::get().shutdown();
-    TextRenderer::get().shutdown();
+    //TextRenderer::get().shutdown();
 
     SDL_GL_DeleteContext(m_SDL_GLContext);
     SDL_DestroyWindow(m_SDLWindow);
@@ -212,12 +213,12 @@ void TundraApplication::Run()
     {
         poll_events();
 
-        LayerStack& layers = LayerStack::get();
+        fbl::LayerStack& layers = fbl::LayerStack::get();
 
         layers.update();
         layers.render();
 
-        EventBus::get().flushEvents();
+        fbl::EventBus::get().flushEvents();
 
         SDL_GL_SwapWindow(m_SDLWindow);
 

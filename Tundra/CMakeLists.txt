@@ -21,6 +21,9 @@ set(Tundra_SRCS
     Player.cpp
     Player.h
 
+    Renderer.cpp
+    Renderer.h
+
     CCC/Camera.h
     CCC/Camera.cpp
 

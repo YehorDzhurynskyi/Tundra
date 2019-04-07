@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "ApplicationLayer.h"
 
-#include <Fabula/Graphics/Renderer.h>
-#include <Fabula/CCC/Camera.h>
+#include "Renderer.h"
+#include "CCC/Camera.h"
 
 ApplicationLayer::ApplicationLayer()
 {

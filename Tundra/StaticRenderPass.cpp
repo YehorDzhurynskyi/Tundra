@@ -1,8 +1,7 @@
 #include "pch.h"
 #include "StaticRenderPass.h"
 
-#include <Fabula/Graphics/API/opengl.h>
-#include <Fabula/Graphics/Renderer.h>
+#include "Renderer.h"
 
 const char* g_StaticVertexShaderSource = ""
 "attribute vec2 a_position;\n"

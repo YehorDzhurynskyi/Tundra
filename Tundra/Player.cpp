@@ -4,7 +4,7 @@
 #include "Layer/GameLayer.h"
 #include "Layer/Event/Event.h"
 
-#include <Fabula/Graphics/Renderer.h>
+#include "Renderer.h"
 
 #include <glm/glm.hpp>
 
@@ -24,7 +24,7 @@ float foo(float x)
 
 Player::Player()
 {
-    m_directionSwitchListener.on(ClickEvent::TypeID(), [this](const IEvent& event)
+    m_directionSwitchListener.on(ClickEvent::TypeID(), [this](const fbl::IEvent& event)
     {
         assert(event.GetEventTypeID() == ClickEvent::TypeID());
 
@@ -37,7 +37,7 @@ Player::Player()
     });
 }
 
-void Player::onConnect(Layer& layer)
+void Player::onConnect(fbl::Layer& layer)
 {
     m_directionSwitchListener.bind(layer);
 }
