@@ -1,17 +1,20 @@
 #include "pch.h"
 #include "TundraApplication.h"
 
-#include "SDL.h"
-#include "SDL_image.h"
-#include "Fabula/Graphics/Renderer.h"
-#include "Fabula/Graphics/API/opengl.h"
-#include "Fabula/Layer/GameLayer.h"
-#include "Fabula/Library/Singleton.h"
-#include "Fabula/Layer/LayerStack.h"
-#include "Fabula/Layer/ApplicationLayer.h"
-#include "Fabula/Layer/HUDLayer.h"
-#include "Fabula/Layer/Event/EventBus.h"
-#include "Fabula/Graphics/Text/TextRenderer.h"
+#include <SDL.h>
+#include <SDL_image.h>
+
+#include <Fabula/Graphics/Renderer.h>
+#include <Fabula/Graphics/API/opengl.h>
+#include <Fabula/Graphics/Text/TextRenderer.h>
+
+#include <Fabula/Layer/GameLayer.h>
+#include <Fabula/Layer/LayerStack.h>
+#include <Fabula/Layer/ApplicationLayer.h>
+#include <Fabula/Layer/HUDLayer.h>
+#include <Fabula/Layer/Event/EventBus.h>
+
+#include <Fabula/Library/Singleton.h>
 
 #ifdef FBL_PLATFORM_WIN32
 const u32 WinFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;

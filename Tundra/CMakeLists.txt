@@ -11,6 +11,26 @@ set(Tundra_SRCS
 
     TundraApplication.h
     TundraApplication.cpp
+
+    Level.cpp
+    Level.h
+    MotionBlurRenderPass.cpp
+    MotionBlurRenderPass.h
+    StaticRenderPass.cpp
+    StaticRenderPass.h
+    Player.cpp
+    Player.h
+
+    CCC/Camera.h
+    CCC/Camera.cpp
+
+    Layer/ApplicationLayer.cpp
+    Layer/ApplicationLayer.h
+    Layer/GameLayer.cpp
+    Layer/GameLayer.h
+    Layer/HUDLayer.cpp
+    Layer/HUDLayer.h
+    Layer/Event/Event.h
 )
 
 add_executable(Tundra ${Tundra_SRCS})
@@ -19,6 +39,17 @@ add_precompiled_header(Tundra pch.h SOURCE_CXX pch.cpp)
 target_link_libraries(Tundra
     PRIVATE
         Fabula
+)
+
+target_include_directories(Tundra
+    PRIVATE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+)
+
+target_compile_definitions(Tundra
+    PRIVATE
+        _USE_MATH_DEFINES
 )
 
 fbl_pack_sources(${Tundra_SRCS})

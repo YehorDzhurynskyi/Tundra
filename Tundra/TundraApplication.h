@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Fabula/IApplication.h"
-#include "SDL_video.h"
+#include <Fabula/IApplication.h>
+#include <SDL_video.h>
 
 class TundraApplication : public fbl::IApplication
 {
