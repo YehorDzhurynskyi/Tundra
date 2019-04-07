@@ -9,8 +9,8 @@ set(Tundra_SRCS
     pch.h
     pch.cpp
 
-    Tundra.h
-    Tundra.cpp
+    TundraApplication.h
+    TundraApplication.cpp
 )
 
 add_executable(Tundra ${Tundra_SRCS})
